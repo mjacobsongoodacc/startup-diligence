@@ -21,9 +21,11 @@ This workflow accepts startup documents via a webhook and runs them through a pa
 1. Import `Startup Diligence 4_16.json` into your n8n instance.
 2. Create and connect the following credentials in n8n:
    - **OpenAI API** — used by all 5 LLM nodes (GPT-4o)
-   - **Telegram API** — used to send the final review notification
-3. Update the Telegram node with your `chatId`.
-4. Activate the workflow and POST startup documents to the `/diligence` webhook endpoint.
+   - **Gmail OAuth2** — used to email the final investment memo
+   - **Telegram API** — used to send the approval notification
+3. Update the `sendTo` email address in the **Send Diligence Report** Gmail node.
+4. Update the Telegram nodes with your `chatId`.
+5. Activate the workflow and POST startup documents to the `/diligence` webhook endpoint.
 
 ## Input Format
 
@@ -40,7 +42,8 @@ This workflow accepts startup documents via a webhook and runs them through a pa
 
 ## Output
 
-A Telegram message is sent when the audit is complete, prompting a double-approval review of the generated investment memo.
+1. **Email** — the full investment memo is sent to the configured Gmail address, including the final memo, recommendation, diligence score, audit findings, confidence scores, and any contradictions or flags.
+2. **Telegram** — a notification is sent after the email, prompting a double-approval review.
 
 ## Notes
 

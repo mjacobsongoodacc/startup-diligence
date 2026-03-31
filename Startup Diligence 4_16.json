@@ -15,7 +15,7 @@
       ],
       "id": "38d77f97-0bf3-4864-9b36-39962a5a4395",
       "name": "Webhook",
-      "webhookId": "b1b251fc-b189-401c-a516-5d7f909e899e"
+      "webhookId": "YOUR_WEBHOOK_ID"
     },
     {
       "parameters": {
@@ -78,7 +78,7 @@
       "name": "OpenAI Chat Model",
       "credentials": {
         "openAiApi": {
-          "id": "LNw2Hz2WFA9TPq0D",
+          "id": "YOUR_OPENAI_CREDENTIAL_ID",
           "name": "OpenAi account"
         }
       }
@@ -118,7 +118,7 @@
       "name": "OpenAI Chat Model1",
       "credentials": {
         "openAiApi": {
-          "id": "LNw2Hz2WFA9TPq0D",
+          "id": "YOUR_OPENAI_CREDENTIAL_ID",
           "name": "OpenAi account"
         }
       }
@@ -158,7 +158,7 @@
       "name": "OpenAI Chat Model2",
       "credentials": {
         "openAiApi": {
-          "id": "LNw2Hz2WFA9TPq0D",
+          "id": "YOUR_OPENAI_CREDENTIAL_ID",
           "name": "OpenAi account"
         }
       }
@@ -198,7 +198,7 @@
       "name": "OpenAI Chat Model3",
       "credentials": {
         "openAiApi": {
-          "id": "LNw2Hz2WFA9TPq0D",
+          "id": "YOUR_OPENAI_CREDENTIAL_ID",
           "name": "OpenAi account"
         }
       }
@@ -264,7 +264,7 @@
       "name": "OpenAI Chat Model4",
       "credentials": {
         "openAiApi": {
-          "id": "LNw2Hz2WFA9TPq0D",
+          "id": "YOUR_OPENAI_CREDENTIAL_ID",
           "name": "OpenAi account"
         }
       }
@@ -285,8 +285,31 @@
     },
     {
       "parameters": {
+        "sendTo": "mrmaxmjacobson@gmail.com",
+        "subject": "=Diligence Report: {{ $json.companyName }} — {{ $json.investment_recommendation }}",
+        "emailType": "html",
+        "message": "=<h2>Startup Diligence Report</h2>\n<h3>Company: {{ $json.companyName }}</h3>\n<h3>Recommendation: <strong>{{ $json.investment_recommendation }}</strong></h3>\n<h3>Overall Diligence Score: {{ $json.overall_diligence_score }}/10</h3>\n<hr/>\n<h4>Final Memo</h4>\n<p>{{ $json.final_memo }}</p>\n<hr/>\n<h4>Audit Findings</h4>\n<pre>{{ JSON.stringify($json.audit_findings, null, 2) }}</pre>\n<h4>Confidence Scores</h4>\n<pre>{{ JSON.stringify($json.confidence_scores, null, 2) }}</pre>\n<h4>Additional Flags</h4>\n<pre>{{ JSON.stringify($json.additional_flags, null, 2) }}</pre>\n<h4>Contradictions Found</h4>\n<pre>{{ JSON.stringify($json.contradictions_found, null, 2) }}</pre>",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1720,
+        256
+      ],
+      "id": "f3a2b1c0-d4e5-4f67-89ab-cdef01234567",
+      "name": "Send Diligence Report",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "YOUR_GMAIL_CREDENTIAL_ID",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
         "operation": "sendAndWait",
-        "chatId": "7728542007",
+        "chatId": "YOUR_TELEGRAM_CHAT_ID",
         "message": "Your deliverables are ready for review",
         "approvalOptions": {
           "values": {
@@ -303,10 +326,10 @@
       ],
       "id": "bc7244c3-fada-45a7-b781-ef332bbeecac",
       "name": "Send a text message",
-      "webhookId": "5e106732-303c-48b3-9b1b-6e0a59403ed7",
+      "webhookId": "YOUR_WEBHOOK_ID",
       "credentials": {
         "telegramApi": {
-          "id": "bVnfNm5H7k9MW4l1",
+          "id": "YOUR_TELEGRAM_CREDENTIAL_ID",
           "name": "Telegram account"
         }
       },
@@ -314,7 +337,7 @@
     },
     {
       "parameters": {
-        "chatId": "7728542007",
+        "chatId": "YOUR_TELEGRAM_CHAT_ID",
         "text": "=Workflow error: {{ $json.error.message }}",
         "additionalFields": {}
       },
@@ -326,10 +349,10 @@
       ],
       "id": "c888ae91-2ab7-481e-a09d-b2726297316b",
       "name": "Send a text message1",
-      "webhookId": "c3bcbddf-7d32-4076-bc0b-9822f36fa907",
+      "webhookId": "YOUR_WEBHOOK_ID",
       "credentials": {
         "telegramApi": {
-          "id": "bVnfNm5H7k9MW4l1",
+          "id": "YOUR_TELEGRAM_CREDENTIAL_ID",
           "name": "Telegram account"
         }
       }
@@ -510,6 +533,17 @@
       "main": [
         [
           {
+            "node": "Send Diligence Report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Diligence Report": {
+      "main": [
+        [
+          {
             "node": "Send a text message",
             "type": "main",
             "index": 0
@@ -570,8 +604,8 @@
   "versionId": "fca57c77-98fb-419f-aff1-4552f66aba97",
   "meta": {
     "templateCredsSetupCompleted": true,
-    "instanceId": "3f6ea5f5b28d1ba440c11edf20683570aee6be5fbf353b77219cf6cf083a4b0d"
+    "instanceId": "YOUR_INSTANCE_ID"
   },
-  "id": "mX8sskbJinVUajGj",
+  "id": "YOUR_WORKFLOW_ID",
   "tags": []
 }
